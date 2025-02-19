@@ -9,7 +9,7 @@
  */
 
 #include <MultiFunctionShield.h>
-#ifdef ARDUINO_R4
+#if defined ARDUINO_MINIMA || defined ARDUINO_UNOR4_WIFI
 #include "FspTimer.h"
 FspTimer display_timer;
 #endif
@@ -28,7 +28,7 @@ MultiFunctionShield::MultiFunctionShield(void)  //constructor
   instance = this;
 }
 
-#ifdef ARDUINO_R4
+#if defined ARDUINO_MINIMA || defined ARDUINO_UNOR4_WIFI
 // callback method used by timer
 void timer_callback(timer_callback_args_t __attribute((unused)) *p_args) {
   instance->ISRFunc();
@@ -71,7 +71,7 @@ ISR(TIMER1_COMPA_vect)          // interrupt service routine
 
 void MultiFunctionShield::begin(void)
 {
-#ifdef ARDUINO_R4
+#if defined ARDUINO_MINIMA || defined ARDUINO_UNOR4_WIFI
   pinMode(BUZZER_PIN, OUTPUT);  
   digitalWrite(BUZZER_PIN, HIGH);   // second! else forever sound
 #else
@@ -83,7 +83,7 @@ void MultiFunctionShield::begin(void)
   pinMode(CLK_PIN,OUTPUT);
   pinMode(DATA_PIN,OUTPUT);
     
-#ifdef ARDUINO_R4
+#if defined ARDUINO_MINIMA || defined ARDUINO_UNOR4_WIFI
 	beginTimer(1000); // 1kHz
 #else
   TCCR1A = 0;                                           // Register loeschen

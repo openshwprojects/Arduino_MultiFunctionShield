@@ -1,12 +1,7 @@
 #ifndef MultiFunctionShield_h
   #define MultiFunctionShield_h
 
-// TODO: better define
-#define ARDUINO_R4 1
-
-#ifdef ARDUINO_R4
-
-#else
+#if !defined ARDUINO_MINIMA && !defined ARDUINO_UNOR4_WIFI
 #ifndef __AVR_ATmega328P__  // Arduino UNO, NANO
   #error : Library only for Arduino Uno, Nano and so on with ATmega328
 #endif
